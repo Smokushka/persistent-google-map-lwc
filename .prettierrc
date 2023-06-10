@@ -1,5 +1,11 @@
 {
   "trailingComma": "none",
+  "printWidth": 100,
+  "useTabs": false,
+  "tabWidth": 4,
+  "semi": true,
+  "bracketSpacing": true,
+  "singleQuote": true,
   "overrides": [
     {
       "files": "**/lwc/**/*.html",
@@ -8,6 +14,6 @@
     {
       "files": "*.{cmp,page,component}",
       "options": { "parser": "html" }
-    }
+    }  
   ]
 }
