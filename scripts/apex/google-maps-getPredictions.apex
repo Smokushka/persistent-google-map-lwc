@@ -1,3 +1,4 @@
 GoogleMapsService googleApi = new GoogleMapsService();
 
-googleApi.getPredictionsFor('100 Harrison Garden');
+List<GoogleMapsService.Prediction> predictions = googleApi.getPredictionsFor('100 Harrison Garden');
+System.debug(predictions);

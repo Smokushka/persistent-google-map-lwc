@@ -16,8 +16,8 @@ public with sharing class GoogleMapsService {
     public GoogleMapsService() {
     }
 
-    public List<String> getPredictionsFor(String addressInput) {
-        List<String> predictions = new List<String>();
+    public List<Prediction> getPredictionsFor(String addressInput) {
+        List<Prediction> predictions = new List<Prediction>();
 
         Http http = new Http();
 
@@ -39,8 +39,27 @@ public with sharing class GoogleMapsService {
         HttpResponse res = http.send(request);
 
         System.debug('=====GOOGLE MAPS API RESPONSE: ' + res);
-        System.debug('=====RESPONSE BODY:' + res.getBody());
+        // System.debug('=====RESPONSE BODY:' + res.getBody());
+
+        if (res.getStatusCode() == 200) {
+            Predictions body = (Predictions) JSON.deserialize(res.getBody(), Predictions.class);
+            predictions = body.predictions;
+        } else {
+        }
 
         return predictions;
+    }
+    public class Predictions {
+        public List<Prediction> predictions;
+        public String status;
+    }
+
+    public class Prediction {
+        @AuraEnabled
+        public String description { get; set; }
+        @AuraEnabled
+        public String place_id { get; set; }
+        @AuraEnabled
+        public String reference { get; set; }
     }
 }
