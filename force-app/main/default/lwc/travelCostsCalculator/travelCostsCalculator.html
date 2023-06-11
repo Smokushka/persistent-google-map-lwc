@@ -18,7 +18,31 @@
                 ></lightning-button>
             </div>
             <div class="card-container slds-grid slds-gutters">
-                <div class="trip-details slds-col slds-size_1-of-2"></div>
+                <div class="trip-details slds-col slds-size_1-of-2">
+                    <lightning-input
+                        label="Origin Address"
+                        type="search"
+                        onchange={handleChange}
+                        value={searchKey}
+                    ></lightning-input>
+                    <template if:true={predictions}>
+                        <div class="slds-box">
+                            <template iterator:it={predictions} for:index="index">
+                                <div
+                                    onclick={handleSelect}
+                                    key={it.value.place_id}
+                                    data-id={it.value.place_id}
+                                    style="cursor: pointer"
+                                >
+                                    <div class="slds-m-around_medium">
+                                        <lightning-formatted-rich-text value={it.value.description}>
+                                        </lightning-formatted-rich-text>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
                 <div class="map slds-col slds-size_1-of-2"></div>
             </div>
         </lightning-card>
