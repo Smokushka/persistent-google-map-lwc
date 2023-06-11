@@ -4,6 +4,9 @@ public with sharing class GoogleMapsService {
     private final String AUTOCOMPLETE_PATH = '/maps/api/place/autocomplete/json';
     private final String KEY = 'key';
     private final String INPUT = 'input';
+
+    private final String DISTANCE_MATRIX_PATH = '/maps/api/distancematrix/json';
+
     private String API_KEY {
         get {
             External_Service_API_Key__mdt googleMapsPersistentKey = External_Service_API_Key__mdt.getInstance(
@@ -49,6 +52,12 @@ public with sharing class GoogleMapsService {
 
         return predictions;
     }
+
+    public DistanceMatrix getDistanceMatrix(String origin, String destination) {
+        DistanceMatrix distanceMatrix = new DistanceMatrix();
+
+        return distanceMatrix;
+    }
     public class Predictions {
         public List<Prediction> predictions;
         public String status;
@@ -61,5 +70,38 @@ public with sharing class GoogleMapsService {
         public String place_id { get; set; }
         @AuraEnabled
         public String reference { get; set; }
+    }
+
+    public class DistanceMatrixWrapper {
+        public List<String> destination_addresses;
+        public List<String> origin_addresses;
+        public List<Row> rows;
+    }
+
+    public class Row {
+        public List<DistanceMatrix> elements;
+    }
+
+    public class DistanceMatrix {
+        @AuraEnabled
+        public Distance distance;
+        @AuraEnabled
+        public Duration duration;
+        @AuraEnabled
+        public String status;
+    }
+
+    public class Distance {
+        @AuraEnabled
+        public String text;
+        @AuraEnabled
+        public String value;
+    }
+
+    public class Duration {
+        @AuraEnabled
+        public String text;
+        @AuraEnabled
+        public String value;
     }
 }
