@@ -6,6 +6,9 @@ public with sharing class GoogleMapsService {
     private final String INPUT = 'input';
 
     private final String DISTANCE_MATRIX_PATH = '/maps/api/distancematrix/json';
+    private final String ORIGINS = 'origins';
+    private final String DESTINATIONS = 'destinations';
+    private final String PREFIX = 'place_id:';
 
     private String API_KEY {
         get {
@@ -53,8 +56,43 @@ public with sharing class GoogleMapsService {
         return predictions;
     }
 
-    public DistanceMatrix getDistanceMatrix(String origin, String destination) {
+    public DistanceMatrix getDistanceMatrixFor(String origin, String destination) {
         DistanceMatrix distanceMatrix = new DistanceMatrix();
+
+        Http http = new Http();
+
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(
+            this.URL +
+                this.DISTANCE_MATRIX_PATH +
+                '?' +
+                this.KEY +
+                '=' +
+                this.API_KEY +
+                '&' +
+                this.ORIGINS +
+                '=' +
+                EncodingUtil.urlEncode((this.PREFIX + origin), 'UTF-8') +
+                '&' +
+                this.DESTINATIONS +
+                '=' +
+                EncodingUtil.urlEncode((this.PREFIX + destination), 'UTF-8')
+        );
+        request.setMethod('GET');
+
+        HttpResponse res = http.send(request);
+
+        System.debug('=====GOOGLE MAPS API RESPONSE: ' + res);
+        // System.debug('=====RESPONSE BODY:' + res.getBody());
+
+        if (res.getStatusCode() == 200) {
+            DistanceMatrixWrapper body = (DistanceMatrixWrapper) JSON.deserialize(
+                res.getBody(),
+                DistanceMatrixWrapper.class
+            );
+            distanceMatrix = body.rows[0].elements[0];
+        } else {
+        }
 
         return distanceMatrix;
     }
@@ -76,6 +114,7 @@ public with sharing class GoogleMapsService {
         public List<String> destination_addresses;
         public List<String> origin_addresses;
         public List<Row> rows;
+        public String status;
     }
 
     public class Row {
@@ -95,13 +134,13 @@ public with sharing class GoogleMapsService {
         @AuraEnabled
         public String text;
         @AuraEnabled
-        public String value;
+        public Decimal value;
     }
 
     public class Duration {
         @AuraEnabled
         public String text;
         @AuraEnabled
-        public String value;
+        public Decimal value;
     }
 }
