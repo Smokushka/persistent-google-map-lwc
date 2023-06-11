@@ -1,11 +1,20 @@
 import { LightningElement } from 'lwc';
 import getPredictionsFor from '@salesforce/apex/AddressPickerController.getPredictionsFor';
+import getTripInformationFor from '@salesforce/apex/TravelCostsCalculatorController.getTripInformationFor';
 
 export default class TravelCostsCalculator extends LightningElement {
     predictions;
     predictionsMap;
 
     searchKey;
+    selectedPlaceId;
+
+    tripInformation;
+    isTripInfoPlaceholderVisible = true;
+    isTripInfoSpinnerVisible = false;
+
+    destination = '100 Harbour Street';
+    destinationKey = 'ChIJA36bM9U0K4gR2eLOdsDHlU8';
 
     handleChange(event) {
         this.searchKey = event.detail.value;
@@ -38,7 +47,23 @@ export default class TravelCostsCalculator extends LightningElement {
         console.log( 'strIndex is', strIndex );
         console.log(this.predictionsMap);
         this.searchKey = this.predictionsMap.get(strIndex);
+        this.selectedPlaceId = strIndex;
         console.log(this.searchKey);
         this.predictions = null;
+    }
+
+    handleGetDirectionsClick() {
+        this.isTripInfoPlaceholderVisible = false;
+        this.isTripInfoSpinnerVisible = true;
+        const origin = this.selectedPlaceId;
+        const destination = this.destinationKey;
+
+        getTripInformationFor({ origin : origin, destination : destination }).then(result => {
+            console.log(result);
+            this.tripInformation = result;
+            this.isTripInfoSpinnerVisible = false;
+        });
+
+
     }
 }

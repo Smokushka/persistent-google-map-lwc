@@ -7,7 +7,7 @@
 }
 .card-container {
     /* width: 100%; */
-    height: 400px;
+    /* height: 400px; */
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -15,4 +15,50 @@
 .trip-details {
 }
 .map {
+}
+.trip-information-header {
+    margin-top: 40px;
+    display: flex;
+    margin-bottom: 10px;
+}
+.trip-details-header {
+    margin-top: 10px;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.trip-information-header h3 {
+    font-weight: bold;
+}
+.trip-details-header h3 {
+    font-weight: bold;
+}
+.spinner-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 150px;
+}
+.trip-information-container {
+    margin-top: 20px;
+}
+
+.value {
+    font-size: 1rem;
+    font-weight: bold;
+    color: grey;
+}
+.distance-row {
+    align-items: flex-end;
+}
+.duration-row {
+    align-items: flex-end;
+}
+.cost-row {
+    margin-top: 20px;
+    align-items: flex-end;
+}
+
+.cost-row .label {
+    font-weight: bold;
 }

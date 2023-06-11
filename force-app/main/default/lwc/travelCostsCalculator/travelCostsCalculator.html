@@ -1,13 +1,13 @@
 <template>
     <div class="container">
-        <lightning-card icon-name="standard:location">
-            <h1 slot="title">Travel Details</h1>
+        <lightning-card icon-name="utility:location">
+            <h1 slot="title">Travel Costs Calculator</h1>
             <div slot="footer">
                 <lightning-button
                     variant="brand"
                     label="Get Directions"
                     title="Primary action"
-                    onclick={handleClick}
+                    onclick={handleGetDirectionsClick}
                     class="slds-m-left_x-small"
                 ></lightning-button>
                 <lightning-button
@@ -19,6 +19,15 @@
             </div>
             <div class="card-container slds-grid slds-gutters">
                 <div class="trip-details slds-col slds-size_1-of-2">
+                    <div class="trip-details-header">
+                        <lightning-icon
+                            icon-name="standard:address"
+                            alternative-text="Trip Information"
+                            title="Trip Information"
+                        ></lightning-icon>
+                        <h3 class="slds-text-heading_medium slds-p-left_medium">Trip Details</h3>
+                    </div>
+
                     <lightning-input
                         label="Origin Address"
                         type="search"
@@ -42,8 +51,76 @@
                             </template>
                         </div>
                     </template>
+                    <lightning-input
+                        label="Destination Address"
+                        type="search"
+                        onchange={handleChange2}
+                        value={destination}
+                    ></lightning-input>
+                    <div class="trip-information-header">
+                        <lightning-icon
+                            icon-name="standard:note"
+                            alternative-text="Trip Information"
+                            title="Trip Information"
+                        ></lightning-icon>
+                        <h3 class="slds-text-heading_medium slds-p-left_medium">
+                            Trip Information
+                        </h3>
+                    </div>
+                    <template if:true={tripInformation}>
+                        <div class="trip-information-container">
+                            <div class="distance-row slds-grid">
+                                <p class="slds-col slds-text-title_caps">Distance:</p>
+                                <p class="value slds-col slds-text-align_right">
+                                    {tripInformation.distance.text}
+                                </p>
+                            </div>
+                            <div class="duration-row slds-grid">
+                                <p class="slds-col slds-text-title_caps">Duration:</p>
+                                <p class="value slds-col slds-text-align_right">
+                                    {tripInformation.duration.text}
+                                </p>
+                            </div>
+                            <div class="cost-row slds-grid">
+                                <p class="label slds-col slds-text-title_caps">Cost:</p>
+                                <p class="value slds-col slds-text-align_right">
+                                    {tripInformation.cost}
+                                </p>
+                            </div>
+                        </div>
+                    </template>
+                    <template if:true={isTripInfoPlaceholderVisible}>
+                        <div class="placeholder-container">
+                            <img
+                                class="slds-illustration__svg slds-align_absolute-center slds-m-bottom--large slds-m-top--small"
+                                src="/projRes/ui-home-private/emptyStates/noEvents.svg"
+                                aria-hidden="true"
+                                alt=""
+                            />
+                            <p class="slds-align_absolute-center slds-text-align_center">
+                                Click "Get Direction" Button to get your Trip information"
+                            </p>
+                        </div>
+                    </template>
+                    <template if:true={isTripInfoSpinnerVisible}>
+                        <div class="spinner-container">
+                            <lightning-spinner
+                                alternative-text="Loading"
+                                size="medium"
+                            ></lightning-spinner>
+                        </div>
+                    </template>
                 </div>
-                <div class="map slds-col slds-size_1-of-2"></div>
+                <div class="map slds-col slds-size_1-of-2">
+                    <div class="trip-details-header">
+                        <lightning-icon
+                            icon-name="standard:tour"
+                            alternative-text="Trip Information"
+                            title="Trip Information"
+                        ></lightning-icon>
+                        <h3 class="slds-text-heading_medium slds-p-left_medium">Trip Route</h3>
+                    </div>
+                </div>
             </div>
         </lightning-card>
     </div>
