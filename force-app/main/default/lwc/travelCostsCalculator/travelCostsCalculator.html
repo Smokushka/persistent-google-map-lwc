@@ -92,7 +92,15 @@
                                                 title="Driving Cost"
                                             ></lightning-icon>
                                         </div>
-                                        <div class="car-value">$5</div>
+                                        <div class="car-value">
+                                            $
+                                            <lightning-formatted-number
+                                                value={tripInformation.cost.byCar}
+                                                format-style="decimal"
+                                                minimum-integer-digits="1"
+                                                maximum-fraction-digits="2"
+                                            ></lightning-formatted-number>
+                                        </div>
                                     </div>
                                     <div class="airplane">
                                         <div class="car-icon">
@@ -102,7 +110,15 @@
                                                 title="Flying Cost"
                                             ></lightning-icon>
                                         </div>
-                                        <div class="car-value">$10</div>
+                                        <div class="car-value">
+                                            $
+                                            <lightning-formatted-number
+                                                value={tripInformation.cost.byAirplane}
+                                                format-style="decimal"
+                                                minimum-integer-digits="1"
+                                                maximum-fraction-digits="2"
+                                            ></lightning-formatted-number>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

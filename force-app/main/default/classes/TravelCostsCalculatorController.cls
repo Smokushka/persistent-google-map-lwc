@@ -16,14 +16,30 @@ public with sharing class TravelCostsCalculatorController {
 
             tripInformation.distance = distanceMatrix.distance;
             tripInformation.duration = distanceMatrix.duration;
-
-            // tripInformation.cost.byCar = 5;
-            // tripInformation.cost.byAirplane = 10;
+            tripInformation.cost = calculateCostFor(distanceMatrix.distance);
 
             return tripInformation;
         } catch (Exception excep) {
             throw new AuraHandledException(GOOGLE_MAPS_ERROR);
         }
+    }
+
+    private static Cost calculateCostFor(GoogleMapsService.Distance distance) {
+        Travel_Cost_Calculator_Rate__mdt carRate = Travel_Cost_Calculator_Rate__mdt.getInstance(
+            'Car'
+        );
+        Travel_Cost_Calculator_Rate__mdt airplaneRate = Travel_Cost_Calculator_Rate__mdt.getInstance(
+            'Airplane'
+        );
+
+        Decimal formatedDistance = distance.value / 1000;
+
+        Cost cost = new Cost();
+
+        cost.byCar = formatedDistance * carRate.Value__c;
+        cost.byAirplane = formatedDistance * airplaneRate.Value__c;
+
+        return cost;
     }
 
     public class TripInformation {
