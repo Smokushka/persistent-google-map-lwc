@@ -1,0 +1,26 @@
+<template>
+    <div class="container">
+        <lightning-card icon-name="standard:location">
+            <h1 slot="title">Travel Details</h1>
+            <div slot="footer">
+                <lightning-button
+                    variant="brand"
+                    label="Get Directions"
+                    title="Primary action"
+                    onclick={handleClick}
+                    class="slds-m-left_x-small"
+                ></lightning-button>
+                <lightning-button
+                    label="New Search"
+                    title="Non-primary action"
+                    onclick={handleClick}
+                    class="slds-m-left_x-small"
+                ></lightning-button>
+            </div>
+            <div class="card-container slds-grid slds-gutters">
+                <div class="trip-details slds-col slds-size_1-of-2"></div>
+                <div class="map slds-col slds-size_1-of-2"></div>
+            </div>
+        </lightning-card>
+    </div>
+</template>
