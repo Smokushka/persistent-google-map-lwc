@@ -3,6 +3,7 @@ import getPredictionsFor from '@salesforce/apex/AddressPickerController.getPredi
 
 export default class TravelCostsCalculator extends LightningElement {
     predictions;
+    predictionsMap;
 
     searchKey;
 
@@ -11,22 +12,33 @@ export default class TravelCostsCalculator extends LightningElement {
         console.log( 'searchKey is', this.searchKey );
 
         getPredictionsFor( { addressInput : this.searchKey } ).then(result => {
-            console.log( 'result is', JSON.stringify( result ) );
 
-            let tempPredictions = [];
-                result.forEach( ( record ) => {
+            if (this.searchKey == null || this.searchKey == undefined || this.searchKey == '') {
+                this.predictions = undefined;
+            } else {
+                console.log( 'result is', JSON.stringify( result ) );
+    
+                let tempPredictions = [];
+                this.predictionsMap = new Map();
+                    result.forEach( ( record ) => {
+                        this.predictionsMap.set(record.place_id,record.description);
+                        let tempRec = Object.assign( {}, record );      
+                        tempRec.description = tempRec.description.replace( new RegExp( this.searchKey, 'i' ),( value ) => `<b>${value}</b>` );                    
+                        tempPredictions.push( tempRec );
+                        
+                    });
+                    this.predictions = tempPredictions;                
+            }
 
-                    let tempRec = Object.assign( {}, record );      
-                    tempRec.description = tempRec.description.replace( new RegExp( this.searchKey, 'i' ),( value ) => `<b>${value}</b>` );                    
-                    tempPredictions.push( tempRec );
-                    
-                });
-                this.predictions = tempPredictions;
         });
     }
 
     handleSelect(event) {
         let strIndex = event.currentTarget.dataset.id;
         console.log( 'strIndex is', strIndex );
+        console.log(this.predictionsMap);
+        this.searchKey = this.predictionsMap.get(strIndex);
+        console.log(this.searchKey);
+        this.predictions = null;
     }
 }
