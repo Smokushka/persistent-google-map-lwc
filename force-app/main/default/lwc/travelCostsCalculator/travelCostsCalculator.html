@@ -82,10 +82,29 @@
                                 </p>
                             </div>
                             <div class="cost-row slds-grid">
-                                <p class="label slds-col slds-text-title_caps">Cost:</p>
-                                <p class="value slds-col slds-text-align_right">
-                                    {tripInformation.cost}
-                                </p>
+                                <div class="label slds-col slds-text-title_caps">Cost:</div>
+                                <div class="cost-value slds-col slds-text-align_right">
+                                    <div class="car">
+                                        <div class="car-icon">
+                                            <lightning-icon
+                                                icon-name="utility:travel_and_places"
+                                                alternative-text="Driving Cost"
+                                                title="Driving Cost"
+                                            ></lightning-icon>
+                                        </div>
+                                        <div class="car-value">$5</div>
+                                    </div>
+                                    <div class="airplane">
+                                        <div class="car-icon">
+                                            <lightning-icon
+                                                icon-name="custom:custom20"
+                                                alternative-text="Flying Cost"
+                                                title="Flying Cost"
+                                            ></lightning-icon>
+                                        </div>
+                                        <div class="car-value">$10</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </template>

@@ -17,6 +17,9 @@ public with sharing class TravelCostsCalculatorController {
             tripInformation.distance = distanceMatrix.distance;
             tripInformation.duration = distanceMatrix.duration;
 
+            // tripInformation.cost.byCar = 5;
+            // tripInformation.cost.byAirplane = 10;
+
             return tripInformation;
         } catch (Exception excep) {
             throw new AuraHandledException(GOOGLE_MAPS_ERROR);
@@ -29,6 +32,13 @@ public with sharing class TravelCostsCalculatorController {
         @AuraEnabled
         public GoogleMapsService.Duration duration;
         @AuraEnabled
-        public Decimal cost;
+        public Cost cost;
+    }
+
+    public class Cost {
+        @AuraEnabled
+        public Decimal byCar { get; set; }
+        @AuraEnabled
+        public Decimal byAirplane { get; set; }
     }
 }

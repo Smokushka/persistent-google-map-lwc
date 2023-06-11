@@ -60,5 +60,19 @@
 }
 
 .cost-row .label {
+    align-self: flex-start;
     font-weight: bold;
+}
+.car {
+    display: flex;
+    justify-content: space-between;
+}
+.airplane {
+    display: flex;
+    justify-content: space-between;
+}
+.cost-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: red;
 }
