@@ -9,3 +9,4 @@ Please see the GoogleMapsService Test Coverage:
 Please see a quick demo recording below:
 
 ![](https://github.com/Smokushka/persistent-google-map-lwc/demo.gif)
+
