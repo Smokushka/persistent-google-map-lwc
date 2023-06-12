@@ -5,6 +5,8 @@
             type="search"
             onchange={handleChange}
             value={searchKey}
+            class="address-input"
+            required
         ></lightning-input>
         <template if:true={predictions}>
             <div class="dropdown slds-box">

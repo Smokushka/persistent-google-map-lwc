@@ -13,17 +13,17 @@ export default class TravelCostsCalculator extends LightningElement {
 
 
     handleGetDirectionsClick() {
-        this.tripInformation = undefined;
-        this.isTripInfoPlaceholderVisible = false;
-        this.isTripInfoSpinnerVisible = true;
-
-        getTripInformationFor({ origin : this.origin, destination : this.destination }).then(result => {
-            console.log(result);
-            this.tripInformation = result;
-            this.isTripInfoSpinnerVisible = false;
-        });
-
-
+        if (this.isValid) {
+            this.tripInformation = undefined;
+            this.isTripInfoPlaceholderVisible = false;
+            this.isTripInfoSpinnerVisible = true;
+    
+            getTripInformationFor({ origin : this.origin, destination : this.destination }).then(result => {
+                console.log(result);
+                this.tripInformation = result;
+                this.isTripInfoSpinnerVisible = false;
+            });
+        }
     }
 
     handleNewSearchClick() {
@@ -39,7 +39,20 @@ export default class TravelCostsCalculator extends LightningElement {
     handleDestinationAddressSelect(event) {
         this.destination = event.detail;
     }
+
     handleOriginAddressSelect(event) {
         this.origin = event.detail;
     }
+
+    get isValid() {
+        const destinationIsValid = this.template.querySelector('.destination-address-picker').validate();
+        const originIsValid = this.template.querySelector('.origin-address-picker').validate();
+
+        if (destinationIsValid && originIsValid) {
+            return true;
+        }
+
+        return false;
+    }
+
 }

@@ -56,4 +56,12 @@ export default class AddressPicker extends LightningElement {
         this.searchKey = null;
     }
 
+    @api
+    validate() {
+        var addressInput = this.template.querySelector('.address-input');
+        addressInput.reportValidity();
+        return addressInput.validity.valid;
+       
+    }
+
 }
