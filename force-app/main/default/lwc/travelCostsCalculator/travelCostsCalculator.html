@@ -155,6 +155,21 @@
                         ></lightning-icon>
                         <h3 class="slds-text-heading_medium slds-p-left_medium">Trip Route</h3>
                     </div>
+                    <template if:true={isTripRoutePlaceholderVisible}
+                        ><div class="placeholder-section">
+                            <div class="placeholder-section-item slds-align_absolute-center">
+                                <img
+                                    class="slds-illustration__svg slds-m-bottom--large"
+                                    src="/projRes/ui-home-private/emptyStates/noTasks.svg"
+                                    aria-hidden="true"
+                                    alt=""
+                                />
+                                <p class="slds-align_absolute-center slds-text-align_center">
+                                    Click "Get Direction" Button to see your Trip Map"
+                                </p>
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </div>
         </lightning-card>

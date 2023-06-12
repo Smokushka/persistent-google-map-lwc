@@ -76,3 +76,14 @@
     font-weight: bold;
     color: red;
 }
+.placeholder-container {
+    height: 100%;
+}
+.placeholder-section {
+    height: 300px;
+    display:flex;
+}
+.placeholder-section-item {
+    display: flex;
+    flex-direction: column;
+}

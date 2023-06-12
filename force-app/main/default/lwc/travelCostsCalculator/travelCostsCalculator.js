@@ -11,6 +11,7 @@ export default class TravelCostsCalculator extends LightningElement {
 
     tripInformation;
     isTripInfoPlaceholderVisible = true;
+    isTripRoutePlaceholderVisible = true;
     isTripInfoSpinnerVisible = false;
 
     destination = '100 Harbour Street';
