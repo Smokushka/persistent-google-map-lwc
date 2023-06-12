@@ -22,4 +22,24 @@ private class GoogleMapsServiceTest {
             'Place Ids Should Match: '
         );
     }
+
+    @isTest
+    static void getDistanceMatrixFor_Test() {
+        Test.setMock(HttpCalloutMock.class, new GoogleMapsDistanceMatrixMock());
+
+        String origin = 'ChIJyS-TaGAtK4gRibCSIksLcC4';
+        String destination = 'ChIJA36bM9U0K4gR2eLOdsDHlU8';
+
+        Test.startTest();
+
+        GoogleMapsService googleApi = new GoogleMapsService();
+        GoogleMapsService.DistanceMatrix distanceMatrix = googleApi.getDistanceMatrixFor(
+            origin,
+            destination
+        );
+
+        Test.stopTest();
+
+        System.assertNotEquals(null, distanceMatrix, 'Distance Matrix Must Not be Null');
+    }
 }

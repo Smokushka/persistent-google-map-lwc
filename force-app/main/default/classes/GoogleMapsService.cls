@@ -82,7 +82,7 @@ public with sharing class GoogleMapsService {
 
         HttpResponse res = http.send(request);
 
-        System.debug('=====GOOGLE MAPS API RESPONSE: ' + res);
+        System.debug('=====GOOGLE MAPS API RESPONSE: ' + res.getBody());
         // System.debug('=====RESPONSE BODY:' + res.getBody());
 
         if (res.getStatusCode() == 200) {
