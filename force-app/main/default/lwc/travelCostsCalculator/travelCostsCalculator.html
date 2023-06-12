@@ -27,36 +27,19 @@
                         ></lightning-icon>
                         <h3 class="slds-text-heading_medium slds-p-left_medium">Trip Details</h3>
                     </div>
-
-                    <lightning-input
-                        label="Origin Address"
-                        type="search"
-                        onchange={handleChange}
-                        value={searchKey}
-                    ></lightning-input>
-                    <template if:true={predictions}>
-                        <div class="slds-box">
-                            <template iterator:it={predictions} for:index="index">
-                                <div
-                                    onclick={handleSelect}
-                                    key={it.value.place_id}
-                                    data-id={it.value.place_id}
-                                    style="cursor: pointer"
-                                >
-                                    <div class="slds-m-around_medium">
-                                        <lightning-formatted-rich-text value={it.value.description}>
-                                        </lightning-formatted-rich-text>
-                                    </div>
-                                </div>
-                            </template>
-                        </div>
-                    </template>
-                    <lightning-input
-                        label="Destination Address"
-                        type="search"
-                        onchange={handleChange2}
-                        value={destination}
-                    ></lightning-input>
+                    <div class="slds-m-top_small">
+                        <c-address-picker
+                            label="Origin Address"
+                            onaddressselect={handleOriginAddressSelect}
+                        ></c-address-picker>
+                    </div>
+                    <div class="slds-m-top_small">
+                        <c-address-picker
+                            label="Destination Address"
+                            onaddressselect={handleDestinationAddressSelect}
+                            class="slds-m-top_small"
+                        ></c-address-picker>
+                    </div>
                     <div class="trip-information-header">
                         <lightning-icon
                             icon-name="standard:note"

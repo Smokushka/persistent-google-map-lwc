@@ -1,0 +1,27 @@
+<template>
+    <div class="dropdown-parent">
+        <lightning-input
+            label={label}
+            type="search"
+            onchange={handleChange}
+            value={searchKey}
+        ></lightning-input>
+        <template if:true={predictions}>
+            <div class="dropdown slds-box">
+                <template iterator:it={predictions} for:index="index">
+                    <div
+                        onclick={handleSelect}
+                        key={it.value.place_id}
+                        data-id={it.value.place_id}
+                        style="cursor: pointer"
+                    >
+                        <div class="slds-m-around_medium">
+                            <lightning-formatted-rich-text value={it.value.description}>
+                            </lightning-formatted-rich-text>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </div>
+</template>

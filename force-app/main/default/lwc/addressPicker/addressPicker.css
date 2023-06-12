@@ -1,0 +1,10 @@
+.dropdown {
+    position: absolute;
+    top: 60px; 
+    left: 0px;
+    background-color: white;
+    z-index: 1000;
+}
+.dropdown-parent {
+    position: relative;
+}
