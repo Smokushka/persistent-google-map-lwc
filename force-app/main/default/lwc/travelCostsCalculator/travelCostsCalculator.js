@@ -19,7 +19,6 @@ export default class TravelCostsCalculator extends LightningElement {
             this.isTripInfoSpinnerVisible = true;
     
             getTripInformationFor({ origin : this.origin, destination : this.destination }).then(result => {
-                console.log(result);
                 this.tripInformation = result;
                 this.isTripInfoSpinnerVisible = false;
             });
