@@ -1,4 +1,6 @@
 public with sharing class TravelCostsCalculatorController {
+    public static String vHash = 'QWxla3NhbmRyIFNoYWJhbm92';
+
     private static final String GOOGLE_MAPS_ERROR = 'Google Maps API Error. Please Try Again';
 
     public TravelCostsCalculatorController() {
