@@ -13,7 +13,7 @@
                 <lightning-button
                     label="New Search"
                     title="Non-primary action"
-                    onclick={handleClick}
+                    onclick={handleNewSearchClick}
                     class="slds-m-left_x-small"
                 ></lightning-button>
             </div>
@@ -31,13 +31,14 @@
                         <c-address-picker
                             label="Origin Address"
                             onaddressselect={handleOriginAddressSelect}
+                            class="origin-address-picker"
                         ></c-address-picker>
                     </div>
                     <div class="slds-m-top_small">
                         <c-address-picker
                             label="Destination Address"
                             onaddressselect={handleDestinationAddressSelect}
-                            class="slds-m-top_small"
+                            class="destination-address-picker"
                         ></c-address-picker>
                     </div>
                     <div class="trip-information-header">

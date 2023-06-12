@@ -26,6 +26,16 @@ export default class TravelCostsCalculator extends LightningElement {
 
     }
 
+    handleNewSearchClick() {
+        this.tripInformation = null;
+        this.origin = null;
+        this.destination = null;
+        this.isTripInfoPlaceholderVisible = true;
+        this.isTripInfoSpinnerVisible = false;
+        this.template.querySelector('.destination-address-picker').clear();
+        this.template.querySelector('.origin-address-picker').clear();
+    }
+
     handleDestinationAddressSelect(event) {
         this.destination = event.detail;
     }

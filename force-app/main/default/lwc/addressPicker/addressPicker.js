@@ -51,4 +51,9 @@ export default class AddressPicker extends LightningElement {
         this.dispatchEvent(addressSelectEvent);
     }
 
+    @api
+    clear() {
+        this.searchKey = null;
+    }
+
 }
