@@ -13,6 +13,7 @@ export default class TravelCostsCalculator extends LightningElement {
 
 
     handleGetDirectionsClick() {
+        this.tripInformation = undefined;
         this.isTripInfoPlaceholderVisible = false;
         this.isTripInfoSpinnerVisible = true;
 
