@@ -41,5 +41,6 @@ private class GoogleMapsServiceTest {
         Test.stopTest();
 
         System.assertNotEquals(null, distanceMatrix, 'Distance Matrix Must Not be Null');
+        System.assertEquals(25233, distanceMatrix.distance.value, 'Distance Values Must Match');
     }
 }
