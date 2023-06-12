@@ -8,4 +8,4 @@ Please see the GoogleMapsService Test Coverage:
 
 Please see a quick demo recording below:
 
-<img src="https://media.cleanshot.cloud/media/11023/PoAGVouAkv1almznFVYMOe6ceHNXOLyWH0feuQh3.gif?Expires=1686605002&Signature=AqvluRm2e-H4ObKDlC50SosGpNQn0BaEhmVN26dIUGbDGG9Rc2lIUwHtQJgUlhZSMzcbAyMp06tqwS15HL9pGY0GpG-vnAa~r-pVtJdk0UtYSdh9e0QMbmCqxtUWQ2nhL~tIK65Rtzvu9-GcvlxEX6poPQg8NsoPigLBt-RuyvfKa1v7QAlnBPh2NA6ZgL-WMgjASF2WCQm8uqrqY5mOfZ-SyurDjiSesUEjRQiJNXwaGGeuju06FwWGJ1Jw8UpjahH6fd5DqW3fLZgGEERcWU95DBtfJK-MehJFdYBuRihv9mGt-az5ICFBpMz~dXJRBsW~L-lt1wMzWN7CObKViQ__&Key-Pair-Id=K269JMAT9ZF4GZ" alt="Solution Demo">
+![](https://github.com/Smokushka/persistent-google-map-lwc/demo.gif)
