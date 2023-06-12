@@ -44,9 +44,6 @@ public with sharing class GoogleMapsService {
 
         HttpResponse res = http.send(request);
 
-        System.debug('=====GOOGLE MAPS API RESPONSE: ' + res.getBody());
-        // System.debug('=====RESPONSE BODY:' + res.getBody());
-
         if (res.getStatusCode() == 200) {
             Predictions body = (Predictions) JSON.deserialize(res.getBody(), Predictions.class);
             predictions = body.predictions;
@@ -81,9 +78,6 @@ public with sharing class GoogleMapsService {
         request.setMethod('GET');
 
         HttpResponse res = http.send(request);
-
-        System.debug('=====GOOGLE MAPS API RESPONSE: ' + res.getBody());
-        // System.debug('=====RESPONSE BODY:' + res.getBody());
 
         if (res.getStatusCode() == 200) {
             DistanceMatrixWrapper body = (DistanceMatrixWrapper) JSON.deserialize(
